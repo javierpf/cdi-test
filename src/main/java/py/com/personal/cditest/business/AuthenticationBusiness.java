@@ -1,7 +1,8 @@
 package py.com.personal.cditest.business;
 
 
-import py.com.personal.cditest.business.dao.Database;
+import py.com.personal.cditest.dao.PermisoDAO;
+import py.com.personal.cditest.dao.UsuarioDAO;
 import py.com.personal.cditest.model.Usuario;
 
 import javax.inject.Inject;
@@ -9,7 +10,7 @@ import javax.inject.Inject;
 public class AuthenticationBusiness {
 
     @Inject
-    Database database;
+    UsuarioDAO usuarioDAO;
 
     @Inject
     LoginInfo loginInfo;
@@ -18,15 +19,12 @@ public class AuthenticationBusiness {
         if(loginInfo.getSessionActive()){
             throw new Exception("No se puede loguear, existe una sesion activa");
         }
-        Usuario u = database.getUser(username);
+        Usuario u = usuarioDAO.getUser(username);
         if(u == null){
             throw new Exception("No se encuentra usuario con username especificado");
         }
         if(u.getPassword().equals(password)){
-            System.out.println("Usuario: " + username + "logueado. Cuenta con los permisos:");
-            for(String permiso : u.getPermissions()){
-                System.out.println(permiso);
-            }
+            System.out.println("Usuario: " + username + "logueado.");
             loginInfo.setSessionActive(true);
             loginInfo.setLoggedUser(u);
         }else{

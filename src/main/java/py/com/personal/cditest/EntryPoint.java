@@ -2,6 +2,7 @@ package py.com.personal.cditest;
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
 import org.jboss.weld.environment.se.events.ContainerInitialized;
+import py.com.personal.bc.common.sockets.SocketServer;
 import py.com.personal.cditest.business.AuthenticationBusiness;
 import py.com.personal.cditest.business.CreditTransaction;
 import py.com.personal.cditest.business.DebitTransaction;
@@ -22,6 +23,9 @@ public class EntryPoint{
     @Any
     Instance<Transaction> transactionsInjector;
 
+    @Inject
+    SocketServer socketServer;
+
 
     public void init(@Observes ContainerInitialized containerInitialized) throws Exception{
 
@@ -41,6 +45,8 @@ public class EntryPoint{
             //Deberia decirnos que no tenemos el monto adecuado
             System.out.println(e.getMessage());
         }
+
+        socketServer.run();
 
 
     }
