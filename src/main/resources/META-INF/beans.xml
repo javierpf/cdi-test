@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
+    <decorators>
+        <class>org.jboss.weld.environment.se.threading.RunnableDecorator
+        </class>
+    </decorators>
     <interceptors>
         <class>py.com.personal.cditest.util.SecuredInterceptor</class>
     </interceptors>

@@ -30,21 +30,21 @@ public class EntryPoint{
     public void init(@Observes ContainerInitialized containerInitialized) throws Exception{
 
 
-        try{
-            transactionsInjector.select(DebitTransaction.class).get().apply(10);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-            //Deberia ocurrir esta excepcion
-        }
-
-        authenticationBusiness.login("juan", "hola");
-        try {
-            transactionsInjector.select(DebitTransaction.class).get().apply(10);
-            transactionsInjector.select(CreditTransaction.class).get().apply(100);
-        }catch (Exception e){
-            //Deberia decirnos que no tenemos el monto adecuado
-            System.out.println(e.getMessage());
-        }
+//        try{
+//            transactionsInjector.select(DebitTransaction.class).get().apply(10);
+//        }catch (Exception e){
+//            System.out.println(e.getMessage());
+//            //Deberia ocurrir esta excepcion
+//        }
+//
+//        authenticationBusiness.login("juan", "hola");
+//        try {
+//            transactionsInjector.select(DebitTransaction.class).get().apply(10);
+//            transactionsInjector.select(CreditTransaction.class).get().apply(100);
+//        }catch (Exception e){
+//            //Deberia decirnos que no tenemos el monto adecuado
+//            System.out.println(e.getMessage());
+//        }
 
         socketServer.run();
 

@@ -14,6 +14,7 @@ public class Database {
     private List<PermisoUsuario> permisoUsuarios;
     private List<Cuenta> cuentas;
     private List<CuentaUsuario> cuentaUsuarios;
+    private List<ApiKey> apiKeys;
 
     @PostConstruct
     private void init(){
@@ -46,6 +47,8 @@ public class Database {
         cuentaUsuarios.add(new CuentaUsuario(1, "juan"));
         cuentaUsuarios.add(new CuentaUsuario(2, "jose"));
 
+        this.apiKeys = new ArrayList<>();
+
     }
 
 
@@ -53,7 +56,7 @@ public class Database {
 
 
     public List<Usuario> getUsuarios() {
-        return usuarios;
+        return Collections.synchronizedList(usuarios);
     }
 
     public void setUsuarios(List<Usuario> usuarios) {
@@ -61,7 +64,7 @@ public class Database {
     }
 
     public List<Cuenta> getCuentas() {
-        return cuentas;
+        return Collections.synchronizedList(cuentas);
     }
 
     public void setCuentas(List<Cuenta> cuentas) {
@@ -69,7 +72,7 @@ public class Database {
     }
 
     public List<CuentaUsuario> getCuentaUsuarios() {
-        return cuentaUsuarios;
+        return Collections.synchronizedList(cuentaUsuarios);
     }
 
     public void setCuentaUsuarios(List<CuentaUsuario> cuentaUsuarios) {
@@ -81,7 +84,7 @@ public class Database {
     }
 
     public List<PermisoUsuario> getPermisoUsuarios() {
-        return permisoUsuarios;
+        return Collections.synchronizedList(permisoUsuarios);
     }
 
     public void setPermisoUsuarios(List<PermisoUsuario> permisoUsuarios) {
@@ -89,6 +92,15 @@ public class Database {
     }
 
     public List<Permiso> getPermisos() {
-        return permisos;
+        return Collections.synchronizedList(permisos);
     }
+
+    public List<ApiKey> getApiKeys() {
+        return Collections.synchronizedList(apiKeys);
+    }
+
+    public void setApiKeys(List<ApiKey> apiKeys) {
+        this.apiKeys = apiKeys;
+    }
+
 }

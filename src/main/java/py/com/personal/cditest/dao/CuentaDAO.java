@@ -14,31 +14,35 @@ public class CuentaDAO {
     Database database;
 
 
-    public Cuenta getMainUserAccount(String username){
+    public Cuenta getMainUserAccount(String username) {
         Cuenta found = null;
-        for(Cuenta cuenta : this.getUserAccounts(username)){
-            if(cuenta.getPrincipal()){
+        for (Cuenta cuenta : this.getUserAccounts(username)) {
+            if (cuenta.getPrincipal()) {
                 found = cuenta;
             }
         }
         return found;
     }
 
-    public List<Cuenta> getUserAccounts(String username){
+    public List<Cuenta> getUserAccounts(String username) {
         List<Cuenta> usersAccounts = new ArrayList<Cuenta>();
-        for(CuentaUsuario cuentaUsuario : database.getCuentaUsuarios()){
-            if(cuentaUsuario.getUsuarioId().equals(username)){
-                usersAccounts.add(this.getAccountById(cuentaUsuario.getCuentaId()));
+        synchronized (database.getCuentaUsuarios()) {
+            for (CuentaUsuario cuentaUsuario : database.getCuentaUsuarios()) {
+                if (cuentaUsuario.getUsuarioId().equals(username)) {
+                    usersAccounts.add(this.getAccountById(cuentaUsuario.getCuentaId()));
+                }
             }
         }
         return usersAccounts;
     }
 
-    public Cuenta getAccountById(Integer numeroCuenta){
+    public Cuenta getAccountById(Integer numeroCuenta) {
         Cuenta found = null;
-        for(Cuenta cuenta : database.getCuentas()){
-            if(cuenta.getNumeroCuenta().equals(numeroCuenta)){
-                found = cuenta;
+        synchronized (database.getCuentas()) {
+            for (Cuenta cuenta : database.getCuentas()) {
+                if (cuenta.getNumeroCuenta().equals(numeroCuenta)) {
+                    found = cuenta;
+                }
             }
         }
         return found;

@@ -10,12 +10,14 @@ public class UsuarioDAO {
     @Inject
     Database database;
 
-    public Usuario getUser(String username){
+    public Usuario getUser(String username) {
         Usuario found = null;
-        for(Usuario usuario : database.getUsuarios()){
-            if(usuario.getUsername().equals(username)){
-                found = usuario;
-                break;
+        synchronized (database.getUsuarios()) {
+            for (Usuario usuario : database.getUsuarios()) {
+                if (usuario.getUsername().equals(username)) {
+                    found = usuario;
+                    break;
+                }
             }
         }
 
