@@ -101,6 +101,12 @@
             <version>${version.is-common-sockets}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.voltdb</groupId>
+            <artifactId>voltdbclient</artifactId>
+            <version>5.1</version>
+        </dependency>
+
         <!-- Librerias de serializacion Jackson -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

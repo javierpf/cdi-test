@@ -40,3 +40,29 @@ public class AutenticationService implements BasicHandler{
         }
     }
 }
+
+
+package py.com.personal.bc.falcon.test.transacciones;
+
+        import org.voltdb.SQLStmt;
+        import org.voltdb.VoltTable;
+        import org.voltdb.VoltType;
+
+        import py.com.personal.bc.falcon.db.transactions.TransactionalSelect;
+
+public class TestTransaccionConditionalLoad extends TestTransaccionLoad {
+    public final SQLStmt conditionalSelectSQL = new SQLStmt(
+            "select codigo, valor "
+                    + "  from test_transacciones "
+                    + " where valor <= ? ");
+
+    public VoltTable run(String claveParticion, long idTransaccion, long duracion, int valor) throws Exception {
+		/*
+		 * duracion > 0 = bloquear
+		 */
+
+        VoltTable results = load( idTransaccion, duracion, conditionalSelectSQL, valor );
+
+        return results;
+    }
+}

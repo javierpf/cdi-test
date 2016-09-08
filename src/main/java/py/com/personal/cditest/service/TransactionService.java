@@ -11,11 +11,11 @@ import javax.inject.Inject;
 
 public class TransactionService implements BasicHandler{
 
-    //TransactionService.acreditar~~~{"monto":10,"token":"-6516174473254642639"}
-    //TransactionService.debitar~~~{"monto":10,"token":"-6516174473254642639"}
+    //TransactionService.acreditar~~~{"monto":10,"token":"-7805172535588249143"}
+    //TransactionService.debitar~~~{"monto":10,"token":"-7805172535588249143"}
 
-    //TransactionService.acreditar~~~{"monto":10,"token":"-5344336254334989699"}
-    //TransactionService.debitar~~~{"monto":10,"token":"-5344336254334989699"}
+    //TransactionService.acreditar~~~{"monto":10,"token":"-7805172535588249143"}
+    //TransactionService.debitar~~~{"monto":10,"token":"-7805172535588249143"}
     @Inject
     CreditTransaction creditTransaction;
 

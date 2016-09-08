@@ -7,4 +7,10 @@
     <interceptors>
         <class>py.com.personal.cditest.util.SecuredInterceptor</class>
     </interceptors>
+    <alternatives>
+        <class>py.com.personal.cditest.dao.voltdb.ApiKeyDAOVoltDB</class>
+        <class>py.com.personal.cditest.dao.voltdb.CuentaDAOVoltDB</class>
+        <class>py.com.personal.cditest.dao.voltdb.PermisoDAOVoltDB</class>
+        <class>py.com.personal.cditest.dao.voltdb.UsuarioDAOVoltDB</class>
+    </alternatives>
 </beans>
